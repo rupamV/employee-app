@@ -1,13 +1,31 @@
+// app.component.ts
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routes';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterModule,CommonModule,FormsModule],  // Import RouterModule for routing
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'employee-app';
+  title = 'Employee Attendance Management';
+  isAuthenticated = false;
+
+  constructor() {}
+
+  ngOnInit() {
+    // Check if the user is authenticated (you can use a service or localStorage for this)
+    this.isAuthenticated = localStorage.getItem('authToken') ? true : false;
+  }
+
+  logout() {
+    // Logout the user and clear the session
+    localStorage.removeItem('authToken');
+    window.location.href = '/login';
+  }
 }

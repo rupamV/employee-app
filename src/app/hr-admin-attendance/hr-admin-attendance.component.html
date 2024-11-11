@@ -1,0 +1,28 @@
+<div class="attendance-management-container">
+    <h2>Attendance Adjustment Requests</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Reason</th>
+          <th>Requested Change</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of attendanceRequests">
+          <td>{{ request.date }}</td>
+          <td>{{ request.reason }}</td>
+          <td>{{ request.requestedChange }}</td>
+          <td>{{ request.status }}</td>
+          <td>
+            <button *ngIf="request.status === 'Pending'" (click)="approveRequest(request)">Approve</button>
+            <button *ngIf="request.status === 'Pending'" (click)="denyRequest(request)">Deny</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -1,0 +1,18 @@
+<div class="adjustment-request-container">
+    <h2>Request Attendance Adjustment</h2>
+  
+    <form (ngSubmit)="submitRequest()">
+      <label for="reason">Reason:</label>
+      <input type="text" id="reason" [(ngModel)]="reason" name="reason" required>
+  
+      <label for="requestedChange">Requested Change:</label>
+      <input type="text" id="requestedChange" [(ngModel)]="requestedChange" name="requestedChange" required>
+  
+      <button type="submit">Submit Request</button>
+  
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </form>
+  </div>
+  
