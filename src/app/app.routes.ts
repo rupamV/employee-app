@@ -1,27 +1,24 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { AttendanceRecordsComponent } from './attendance-records/attendance-records.component';
-import { AdjustmentRequestComponent } from './adjustment-request/adjustment-request.component';
-import { HRAdminAttendanceComponent } from './hr-admin-attendance/hr-admin-attendance.component';
 import { HRAdminGuard } from './hr-admin.guard';
-import { AuthGuard } from './auth.guard'; // Import the AuthGuard
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { 
     path: 'attendance-records', 
-    component: AttendanceRecordsComponent, 
-    canActivate: [AuthGuard] // Apply AuthGuard
+    loadComponent: () => import('./attendance-records/attendance-records.component').then(m => m.AttendanceRecordsComponent), 
+    canActivate: [AuthGuard] 
   },
   { 
     path: 'adjustment-request', 
-    component: AdjustmentRequestComponent, 
-    canActivate: [AuthGuard] // Apply AuthGuard
+    loadComponent: () => import('./adjustment-request/adjustment-request.component').then(m => m.AdjustmentRequestComponent), 
+    canActivate: [AuthGuard]
   },
   { 
     path: 'hr-admin', 
-    component: HRAdminAttendanceComponent, 
-    canActivate: [AuthGuard, HRAdminGuard] // Apply both AuthGuard and HRAdminGuard
+    loadComponent: () => import('./hr-admin-attendance/hr-admin-attendance.component').then(m => m.HRAdminAttendanceComponent), 
+    canActivate: [AuthGuard, HRAdminGuard] 
   }
 ];

@@ -2,13 +2,11 @@
   <div class="login-card">
     <h2>{{ isRoleSelected ? 'Login as ' + (role === 'hr' ? 'HR Admin' : 'Employee') : 'Choose Your Login Role' }}</h2>
 
-    <!-- Role selection buttons -->
     <div *ngIf="!isRoleSelected" class="role-selection">
       <button (click)="selectRole('hr')" class="role-btn hr-btn">Login as HR Admin</button>
       <button (click)="selectRole('employee')" class="role-btn employee-btn">Login as Employee</button>
     </div>
 
-    <!-- Login form for both HR Admin and Employee -->
     <div *ngIf="isRoleSelected" class="login-form">
       <div class="input-group">
         <label for="username">Username:</label>
